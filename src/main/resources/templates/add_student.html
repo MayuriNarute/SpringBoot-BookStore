@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
   <head>
@@ -7,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>CrudApp: Home</title>
+    <title>CrudApp: Add</title>
   </head>
   
   <body>
@@ -22,7 +28,7 @@
         <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/saveStudentPage}">Add Student</a>
+        <a class="nav-link" th:href="@{#}">Add Student</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
@@ -40,29 +46,28 @@
     </ul>
   </div>
 </nav><br><br>
-<div class="container" style="color: black;">
-	   <table class="table table-bordered">
-	  <thead>
-	    <tr>
-	      <th scope="col">Student ID</th>
-	      <th scope="col">Student Name</th>
-	      <th scope="col">Student Address</th>
-	      <th scope="col">Email ID</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr th:each="student: ${studentlist}">
-	      <th scope="row" th:text="${student.id}" ></th>
-	      <td th:text="${student.name}"></td>
-	      <td th:text="${student.address}"></td>
-	      <td th:text="${student.email}"></td>
-	    </tr>
-	    
-	  </tbody>
-	</table>
+	<div class="container" style="color: black;">
+	  <form class="col-6" th:action="@{/saveStudent}" th:object="${student}" method="post">
+ 
+  <div class="form-group">
+    <label for="exampleInputEmail1">Student Name:</label>
+    <input type="text" th:field="*{name}"class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter name of student">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email ID:</label>
+    <input type="email" th:field="*{email}" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="Enter email of student">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Student Address:</label>
+    <input type="text" th:field="*{address}" class="form-control" id="exampleInput3" aria-describedby="emailHelp" placeholder="Enter address of student">
+  </div>
+  <button type="submit" class="btn btn-success">Save Record</button>
+</form>
    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
+</html>
+</body>
 </html>
