@@ -57,7 +57,7 @@ public class CrudController {
 	    public String deleteStudent(@PathVariable("id") int id) {
 	    	repo.deleteById(id);
 	    	System.out.println("Student record deleted...");
-	    	return "redirect:/";
+	    	return "redirect:/?deleted=true";
 	    }
 	    
 	    //update a student
@@ -67,6 +67,7 @@ public class CrudController {
 	    public String showUpdate(@PathVariable("id")int id,Model model) {
 	    	Optional<Student> temp=repo.findById(id);
 	    	Student student=temp.get();
+	    	System.out.println("Student record updated...");
 	    	model.addAttribute("student",student);
 	    	return "update_student";
 	    }
