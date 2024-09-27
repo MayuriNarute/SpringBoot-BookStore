@@ -34,7 +34,6 @@ public class CrudController {
 	    		 model.addAttribute("noRecords",true);
 	    	 }else {
 	    		 model.addAttribute("noRecords",false);
-
 	    	 }
 	    	 return "index";
 	    }
@@ -44,6 +43,7 @@ public class CrudController {
 	    public String saveStudentPage(Model model) {
 	    	Student student=new Student();
 	    	model.addAttribute("student",student);
+	    	System.out.println("Student record added...");
 	       return "add_student";
 	    }
 	    @PostMapping("/saveStudent")
@@ -60,5 +60,15 @@ public class CrudController {
 	    	return "redirect:/";
 	    }
 	    
+	    //update a student
+	    @GetMapping("/updateStudent/{id}")
+	    
+	    
+	    public String showUpdate(@PathVariable("id")int id,Model model) {
+	    	Optional<Student> temp=repo.findById(id);
+	    	Student student=temp.get();
+	    	model.addAttribute("student",student);
+	    	return "update_student";
+	    }
 	    
 }
